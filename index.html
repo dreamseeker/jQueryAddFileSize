@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>jQuery AddFileSize プラグイン</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.AddFileSize.js"></script>
+<script type="text/javascript">
+	$(function(){
+		// sample1
+		$('.sample1 a[href$=".pdf"], .sample1 a[href*=".doc"]').AddFileSize({
+			php_url: '/plugins/jQuery/jQueryAddFileSize/lib/filesize.php'
+		});
+		
+		// sample2
+		$('.sample2 a[href$=".pdf"], .sample2 a[href*=".doc"]').AddFileSize({
+			php_url: '/plugins/jQuery/jQueryAddFileSize/lib/filesize.php',
+			extension: {
+				enable: true
+			}
+		});
+		
+		// sample2
+		$('.sample3 a[href$=".pdf"], .sample3 a[href*=".doc"]').AddFileSize({
+			php_url: '/plugins/jQuery/jQueryAddFileSize/lib/filesize.php',
+			prefix: '【',
+			suffix: '】',
+			extension: {
+				enable: true,
+				suffix: '形式・'
+			}
+		});
+	});
+</script>
+<!--[if lt IE 9]><script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+<header id="header">
+	<h1>jQuery AddFileSize プラグイン</h1>
+	<p>ライセンス：MITライセンス<br>
+	ダウンロード：<a href="http://labs.d-s-b.jp/plugins/jQuery/jQueryAddFileSize/jQueryAddFileSize.zip">jQueryAddFileSize.zip</a>（<a href="https://github.com/dreamseeker/jQueryAddFileSize">GitHub</a>）<br>
+	バージョン：1.00
+	</p>
+</header>
+<article>
+	<div class="wrap">
+		<section>
+		<p>これは、リンク先に指定されたファイルの容量を取得して、a要素の直後にファイルサイズを表示するためのjQuery プラグインです。同一ドメインで、URLまたは絶対パスで指定されたファイルが対象となります。</p>
+<p>なお、ファイルサイズがKBの場合には小数点1位、MBまたはGBの場合は小数点2位までの表示となります。</p>
+		</section>
+		<section>
+			<h2>更新履歴</h2>
+<dl>
+	<dt>2012.02.04</dt>
+	<dd>jQuery AddFileSize プラグイン ver 1.00を公開。</dd>
+</dl>
+		</section>
+		<section>
+			<h2>サンプル1</h2>
+			<ul class="sample1">
+				<li><a href="http://labs.d-s-b.jp/plugins/jQuery/jQueryAddFileSize/sample/sample.pdf">PDFファイルのサンプル</a></li>
+				<li><a href="http://labs.d-s-b.jp/plugins/jQuery/jQueryAddFileSize/sample/sample.doc">Wordファイルのサンプル</a></li>
+			</ul>
+			<pre class="code">
+$('a[href$=".pdf"], a[href*=".doc"]').AddFileSize({
+	php_url: '/path_to/filesize.php'
+});
+			</pre>
+			<p>/lib/filesize.phpと/js/jquery.AddFileSize.jsをアップロード後、プラグイン本体をscript要素で読み込む必要があります。</p>
+		</section>
+		<section>
+			<h2>サンプル2</h2>
+			<ul class="sample2">
+				<li><a href="http://labs.d-s-b.jp/plugins/jQuery/jQueryAddFileSize/sample/sample.pdf">PDFファイルのサンプル</a></li>
+				<li><a href="http://labs.d-s-b.jp/plugins/jQuery/jQueryAddFileSize/sample/sample.doc">Wordファイルのサンプル</a></li>
+			</ul>
+			<pre class="code">
+$('a[href$=".pdf"], a[href*=".doc"]').AddFileSize({
+	php_url: '/path_to/filesize.php',
+	extension: {
+		enable: true
+	}
+});
+			</pre>
+</section>
+		<section>
+		<h2>サンプル3</h2>
+			<ul class="sample3">
+				<li><a href="http://labs.d-s-b.jp/plugins/jQuery/jQueryAddFileSize/sample/sample.pdf">PDFファイルのサンプル</a></li>
+				<li><a href="http://labs.d-s-b.jp/plugins/jQuery/jQueryAddFileSize/sample/sample.doc">Wordファイルのサンプル</a></li>
+			</ul>
+			<pre class="code">
+$('a[href$=".pdf"], a[href*=".doc"]').AddFileSize({
+	php_url: '/path_to/filesize.php',
+	prefix: '【',
+	suffix: '】',
+	extension: {
+		enable: true,
+		suffix: '形式・'
+	}
+});
+			</pre>
+		</section>
+		<section>
+			<h2>初期化オプションについて（グレーの枠内は初期値です）</h2>
+			<dl>
+				<dt>php_url:</dt>
+				<dd>ファイルサイズを取得するためのPHPファイル（/lib/filesize.php）へのURLもしくは絶対パスを指定します。</dd>
+				<dd class="default">
+					<pre>php_url: '/lib/filesize.php'</pre>
+				</dd>
+				<dt>prefix:</dt>
+				<dd>ファイルサイズ表記の接頭辞を指定します。</dd>
+				<dd class="default">
+					<pre>prefix: ' ( '</pre>
+				</dd>
+				<dt>suffix: </dt>
+				<dd>ファイルサイズ表記の接尾辞を指定します。</dd>
+				<dd class="default">
+					<pre>suffix: ' )'</pre>
+				</dd>
+				<dt>extension:</dt>
+				<dd>
+					<dl>
+						<dt>enable:</dt>
+						<dd>ファイル拡張子の表示をブーリアン（ true | false ）で指定します。<br>
+						doc（または、docx）が「Word」、xls（または、xlsx）が「Excel」、ppt（または、pptx）が「PowerPoint」に置き換えられます。それ以外であれば、半角英字（大文字）表記となります。</dd>
+						<dt>suffix:</dt>
+						<dd>ファイル拡張子を表示する際の接尾辞を指定します。</dd>
+					</dl>
+				</dd>
+				<dd class="default">
+<pre>
+extension: {
+	enable: false,
+	suffix: ' / '
+}
+</pre>
+				</dd>
+			</dl>
+		</section>
+		<section>
+			<h2>謝辞</h2>
+			<p>このプラグインを作るにあたって、<a href="http://twitter.com/toricoco" target="_blank">@toricoco</a>さん、<a href="http://twitter.com/dogeartweet" target="_blank">@dogeartweet</a>さんにアドバイスをいただきました。<br>
+			いつもありがとうございます。</p>
+		</section>
+		<section>
+		<h2>備考</h2>
+		<p>お気づきの点やご意見・ご要望などありましたら、<a href="http://twitter.com/BUN" target="_blank">@BUN</a>または<a href="http://d-s-b.jp/" target="_blank">dreamseeker</a>まで、ご連絡ください。 </p>
+		</section>
+	</div>
+</article>
+<footer>
+<p><a href="http://ganba1049.net/"><img src="http://ganba1049.net/banner.gif" alt="ニッポンスマイルプロジェクト！"></a></p>
+</footer>
+</body>
+</html>
