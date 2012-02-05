@@ -33,8 +33,8 @@
 			
 			// Extension Properties
 			var ext				= opts.extension;
-			var ext_enable		= ext['enable'];
-			var ext_suffix		= ext['suffix'];
+			var ext_enable		= ( ext['enable'] ) ? ext['enable'] : false;
+			var ext_suffix		= ( ext['suffix'] ) ? ext['suffix'] : ' / ';
 			
 			/* -------------------------------------------------------------------------
 		
